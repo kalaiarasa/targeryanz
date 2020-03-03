@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tabs</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+	<!-- <link rel="icon" type="image/x-icon" href="favicon.png"> -->
+</head>
+<body style="padding: 5px">
+<!-- <h1 class="title">Tabs</h1> -->
+<div class="tabContainer">
+    <div class="buttonContainer">
+        <button onclick="showPanel(0,'green')">Add College</button>
+        <button onclick="showPanel(1,'green')">Last date Update</button>
+        <button onclick="showPanel(2,'green')">Edit Student Details</button>
+        <button onclick="showPanel(3,'green')">Approve Student</button>
+        
+    </div>
+    <div class="tabPanel">
+        <div>
+            <br />
+            Councelling code
+            <input type="number" id="c_code" />
+            <br />College Name
+            <input type="text" id="c_name" />
+            <br />Password
+            <input type="text" id="pass" />
+            <button id="create_college">Create</button>
+          </div>
+    </div>
+    <div class="tabPanel">
+        <div>
+            <br />
+            Last Date For Submission
+            <input type="date" id="last_date"  value="<?php echo $result['last_date']; ?>"/>
+            <button id="lastdate">Update</button>
+          </div>
+    </div>
+    <div class="tabPanel">
+        <div>
+            <form action="approval/student_details.php" method="POST">
+            <br />Councelling Code for Editing Data
+            <input type="number" name="c_code" id="c_code_v" />
+            <button id="view_college" formactiom="/approval/student_details.php">View</button>
+            <button id="validate_college">Validate</button>
+          </form>
+          </div>
+    </div>
+    <div class="tabPanel">
+        <div>
+            <br />
+            Search Application Number
+            <input type="number" id="a_no" />
+            <button id="view_student">View</button>
+          <button id="delete_student">Delete</button>
+          </div>
+    </div>
+</div>
+
+<script>
+    var tabButtons=document.querySelectorAll(".tabContainer .buttonContainer button");
+    var tabPanels=document.querySelectorAll(".tabContainer  .tabPanel");
+
+   function showPanel(panelIndex,colorCode) {
+     tabButtons.forEach(function(node){
+        node.style.backgroundColor="";
+        node.style.color="";
+     });
+     tabButtons[panelIndex].style.backgroundColor=colorCode;
+     tabButtons[panelIndex].style.color="white";
+     tabPanels.forEach(function(node){
+        node.style.display="none";
+     });
+     tabPanels[panelIndex].style.display="block";
+     tabPanels[panelIndex].style.backgroundColor="#f2f2f2";
+   }
+  showPanel(0,'green');
+</script>
+</body>
+</html>
